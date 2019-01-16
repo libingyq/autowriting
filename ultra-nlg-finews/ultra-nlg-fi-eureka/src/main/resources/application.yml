@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: eureka
+
+server:
+      port: 8000
+
+eureka:
+    instance:
+          hostname: ${eureka.server:http://127.0.0.1}
+          leaseRenewalIntervalInSeconds: 5
+          prefer-ip-address: true
+    client:
+        register-with-eureka: false
+        fetch-registry: false
+        service-url:
+                defaultZone: ${eureka.instance.hostname}:${server.port}/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有端点 默认是info,health

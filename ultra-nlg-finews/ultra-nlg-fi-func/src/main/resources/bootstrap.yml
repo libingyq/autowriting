@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: ${env:dev_v1.0}
+  application:
+    serviceId : ultra-nlg-fi-func
+    name: ultra-nlg-fi-func
+  cloud:
+    config:
+      discovery:
+            enabled: true
+            service-id: ultra-nlg-fi-config
+      fail-fast: true
+server:
+  port: 7004
+
+ribbon:
+  ConnectionTimeout: 300000
+  ReadTimeout: 500000
+
+eureka:
+  client:
+    service-url:
+            defaultZone: ${eureka.server:http://192.168.181.155:8000/eureka}
+    instance:
+#      prefer-ip-address: true      #使用ip进行配置
+      lease-renewal-interval-in-seconds: 1
+      lease-expiration-duration-in-seconds: 2
+

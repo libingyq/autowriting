@@ -1,0 +1,36 @@
+server:
+      port: 7001
+eureka:
+  client:
+    serviceUrl:
+            #目前注册在oec的注册中心上
+            defaultZone: ${eureka.server:http://192.168.181.155:8000}/eureka
+  instance:
+    prefer-ip-address: true      #使用ip进行配置
+#    ip-address: 192.168.181.159    #这台机器的ip
+spring:
+  profiles:
+    #active: ${env:native}
+    active: ${env:git}
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://192.168.191.117:8001/prod/config.git
+          searchPaths: ${eureka.env:/nlg_fi/dev_v1.0}
+          username: wuxiangbo
+          password: wuxiangbo123
+        native:
+          configPath:  ${eureka.env:/nlg_fi/dev_v1.0}
+          #search-locations: ${native.configPath:file:config}
+          search-locations: /ultra-nlg-fiNews/config/localconfig
+      discovery:
+        enabled: true
+  application:
+    name: ultra-nlg-fi-config
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" #暴露所有端点 默认是info,health

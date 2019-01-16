@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Ultra-FIN</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- endinject -->
+    <!--<link rel="shortcut icon" href="images/favicon.png" />-->
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+</head>
+<body>
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <!--<iframe src="pages/common/header.html" width="100%"; height="94px" frameborder="0" scrolling="no" name="headFrame"></iframe>-->
+    <!--引入抽取的topbar-->
+    <!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+    <div th:replace="common/header::topbar"></div>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <div th:replace="common/sidebar::sidebar"></div>
+        <!-- partial -->
+        <div class="main-panel">
+            <div class="content-wrapper">
+
+                <div class="page-header">
+                    <h3 class="page-title">
+              <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-border-color"></i>
+              </span>
+                        新建模板
+                    </h3>
+                    <nav aria-label="breadcrumb">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <span></span>Overview
+                                <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row" style="margin: 0 20%">
+                                    <label for="tem-name" class="col-sm-3 col-form-label">模板名称</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="tem-name" placeholder="模板名称">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="paragraph">
+
+
+                    <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title para-id">第1段</h4>
+                                <p class="card-description">
+                                    段落中可有多个<code>关注项</code>
+                                </p>
+  
+                                <form class="tuple-form">
+
+
+                                    <div class="form-group tuple-sentence" style="margin: 2% 15%">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-fw btn-outline-primary dropdown-toggle time-func" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">时间函数</button>
+                                                <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(0px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <div  th:each="timef,timefStat : ${session.TimeFunc}">
+                                                    <a class="dropdown-item" th:text="${timef}"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-fw btn-outline-primary dropdown-toggle type-func" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">关注类型</button>
+                                                <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(107px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <div>
+                                                        <a class="dropdown-item obj-class" >股票</a>
+                                                        <a class="dropdown-item obj-class" >指数</a>
+
+                                                        <div role="separator" class="dropdown-divider"></div>
+                                                        <a class="dropdown-item obj-class" >概念</a>
+                                                        <a class="dropdown-item obj-class" >行业</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <input type="text" class="dropdown-toggle search-object" style="width: 150px"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                                                <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(107px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                    <div class="obj-list">
+                                                        <a class="dropdown-item" >请选择类型</a>
+
+                                                        <div role="separator" class="dropdown-divider"></div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-fw btn-outline-primary dropdown-toggle upper-func" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">关注函数</button>
+                                                <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(107px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                                                        <div th:each="upf,upfStat : ${session.UpperFunc}">
+                                                            <a class="dropdown-item" th:text="${upf}"></a>
+                                                        </div>
+                                                        <div class="append-func" style="display: none">
+                                                            <div role="separator" class="dropdown-divider"></div>
+                                                            <a class="dropdown-item obj-class" >关注领涨</a>
+                                                            <a class="dropdown-item obj-class" >关注领跌</a>
+                                                        </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-gradient-danger btn-sm delete-tuple" type="button"><i class="mdi mdi-delete"></i></button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+
+                                    <div class="btn-group" role="group"  style="margin: 2% 25%;">
+                                        <button type="button" class="btn btn-fw btn-outline-primary add-sentence">
+                                            增加关注项
+                                        </button>
+                                        <button type="button" class="btn btn-fw btn-outline-primary clear-sentences">
+                                            清空该段落
+                                        </button>
+                                        <button type="button" class="btn btn-fw btn-outline-primary add-paragraph">
+                                            增加模板段
+                                        </button>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-group row" style="margin: 0 25%">
+                                    <button id="submit-template" type="button" class="btn btn-gradient-success btn-rounded btn-fw">提交</button>
+                                    <div style="margin: 0 15%"></div>
+                                    <button id="clearAll" type="button" class="btn btn-gradient-danger btn-rounded btn-fw">清空</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:partials/_footer.html -->
+            <footer th:replace="common/footer::footer">
+            </footer>
+            <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+<!-- container-scroller -->
+
+<!-- plugins:js -->
+<script src="vendors/js/vendor.bundle.base.js"></script>
+<script src="vendors/js/vendor.bundle.addons.js"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="js/off-canvas.js"></script>
+<script src="js/misc.js"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="js/dashboard.js"></script>
+<!-- End custom js for this page-->
+
+<script>
+
+    $(function () {
+
+
+
+
+
+
+
+        $("body").on('keyup',".search-object",function () {
+
+            var type = $(this).parent().prev().children().first().text();
+            var list = $(this).next().children().first();
+            if(type == '关注类型'){
+                alert("请选择关注类型")
+                $(this).val('')
+                return
+            }
+            $.ajax({
+                url:"/web/res/searchObj",
+                type:"post",
+                data:{search:$(this).val(),type:type},
+                success:function(data){
+                    var algList = data.data;
+
+                    if(algList.length == 0){
+                        list.empty()
+                    }else {
+                        var size = algList.length;
+                        if(algList.length > 10){
+                            size = 10;
+                        }
+
+                        list.empty()
+                        for (var i = 0 ; i< size; i++){
+
+                            var name = algList[i].second;
+                            var code = algList[i].first;
+                            var liStr = '<a class="dropdown-item append-info" value="'+code+'" >'+name+'</a>'
+                            list.append(liStr)
+                        }
+                    }
+
+                },
+                dataType:"json"
+            });
+
+
+        })
+
+
+
+
+
+        var firstTuple = $('.tuple-form').first().children().first().clone();
+        var firstPara = $('.paragraph').children().first().clone();
+
+
+        $("body").on("click", '.add-paragraph',function () {
+            var length = $(this).parents('.paragraph').children().length;
+            if(length >= 5){
+                alert("目前模板最多支持5段")
+                return
+            }
+
+            $(this).parents('.paragraph').append(firstPara.clone())
+            var i = 1
+            $('.para-id').each(function () {
+                $(this).text("第"+i+"段")
+                i++;
+            })
+
+        })
+        
+        //下拉框值变换
+
+        $("body").on("click", '.dropdown-item',function () {
+
+            chooseVal = $(this).text();
+            $(this).parent().parent().prev().text(chooseVal)
+            var val = $(this).hasClass('obj-class')
+            if(val){
+                $(this).parent().parent().parent().next().children().first().val('')
+                $(this).parent().parent().parent().next().find(".obj-list").first().empty()
+
+
+            }
+            var text = $(this).text();
+            if(text == '概念'|| text == '行业'){
+                $(this).parent().parent().parent().parent().find(".append-func").show()
+
+            }else if(text == '股票' || text == '指数') {
+                $(this).parent().parent().parent().parent().find(".append-func").hide()
+                $(this).parent().parent().parent().next().next().children().first().text('关注函数')
+            }
+
+            var hasClassSearch = $(this).hasClass('append-info');
+            if(hasClassSearch){
+                $(this).parent().parent().prev().val(chooseVal)
+                $(this).parent().parent().prev().attr("name",$(this).attr('value'));
+            }
+
+
+
+        })
+
+
+
+
+        $("body").on("click",".clear-sentences",function () {
+            var form = $(this).parent().prev();
+            var flag = confirm("该操作将清空该段落内容，是否确认？");
+            if(flag==true){
+                form.empty()
+            }
+            form.append(firstTuple.clone())
+
+        })
+
+
+
+
+        $("body").on("click",".delete-tuple",function () {
+
+            var tupleSize = $(this).parent().parent().parent().parent().children().length
+            if(tupleSize == 1){
+                var flag = confirm("段落没有关注项后会自动删除，是否确认？");
+                if(flag){
+
+                    var paraLen = $('.para-id').length;
+                    if(paraLen == 1){
+                        alert("模板最少要有一个标题")
+                        return
+                    }
+                    $(this).parents(".row").remove()
+                    var i = 1
+                    $('.para-id').each(function () {
+                        $(this).text("第"+i+"段")
+                        i++;
+                    })
+                }
+            }else {
+
+                $(this).parent().parent().parent().remove()
+            }
+
+        })
+
+
+        $("body").on("click",".add-sentence",function () {
+            var tupleForm = $(this).parent().prev();
+            tupleForm.append(firstTuple.clone())
+
+        })
+
+        $('#clearAll').click(function () {
+
+            var flag = confirm("该操作会清空该模板，是否继续？");
+            if(flag){
+                window.location.reload()
+            }
+
+        })
+
+        $('#submit-template').click(function () {
+            var temName = $('#tem-name').val();
+            if(temName == ''){
+                alert('请输入标题名称')
+                return
+            }
+
+            var paras = "";
+            $('.paragraph').children().each(function () {
+                var sentences = ""
+                $(this).find('.tuple-sentence').each(function () {
+
+                    var timeFunc = $(this).find('.time-func').first().text();
+                    if(timeFunc == '时间函数'){
+                        alert('模板存在未填充时间函数')
+                        return
+                    }
+                    var typeFunc = $(this).find('.type-func').first().text();
+                    if(timeFunc == '关注类型'){
+                        alert('模板存在未填充关注类型')
+                        return
+                    }
+                    var searchObject = $(this).find('.search-object').first().attr('name');
+                    if(searchObject == ''){
+                        alert('模板存在未填写对象类型')
+                        return
+                    }
+                    var upperFunc = $(this).find('.upper-func').first().text();
+                    if(upperFunc == '关注函数'){
+                        alert('模板存在未填充关注函数')
+                        return
+                    }
+
+                    var tuple = '<{'+timeFunc+'}+[{'+typeFunc+":"+searchObject+'}]+['+upperFunc+']>-'
+                    sentences+=tuple
+                })
+                paras+=(sentences.substr(0,sentences.length-1)+"#")
+            })
+
+            console.log(paras)
+            $.ajax({
+                url:"/web/template/addTemplate",
+                type:"post",
+//                contentType: "application/json",
+                data:{paragraphs:paras.substr(0,paras.length-1),templateName:temName},
+//                data:{paragraphs:paras,templateName:temName},
+                success:function(data){
+                    console.log(data)
+                    if(data.status==200){
+                        alert('添加成功')
+                        window.location.reload()
+                    }else{
+                        alert('添加失败')
+                    }
+                },
+                dataType:"json"
+            });
+
+
+        })
+
+
+
+
+
+    })
+
+
+
+</script>
+
+
+
+
+
+</body>
+
+</html>

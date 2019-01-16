@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: ${env:git}
+  application:
+    name: ${service.name:auto-writing-service}
+  messages:
+    encoding: UTF-8
+  cloud:
+    refresh:
+      refreshable: none
+    config:
+      discovery:
+            enabled: true
+            service-id: ultra-nlg-fi-config
+      fail-fast: true
+
+
+server:
+  port: 12305
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${eureka.server:http://192.168.181.155:8000/eureka} #注册eureka地址
+  instance:
+    prefer-ip-address: true

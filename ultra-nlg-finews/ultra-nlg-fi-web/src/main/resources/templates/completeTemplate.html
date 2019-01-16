@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Ultra-FIN</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <!--<link rel="shortcut icon" href="images/favicon.png" />-->
+  <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+      <!--<iframe src="pages/common/header.html" width="100%"; height="94px" frameborder="0" scrolling="no" name="headFrame"></iframe>-->
+      <!--引入抽取的topbar-->
+      <!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+      <div th:replace="common/header::topbar"></div>
+      <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+        <div th:replace="common/sidebar::sidebar"></div>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+          <div class="page-header">
+            <h3 class="page-title">
+              <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-auto-fix"></i>
+              </span>
+              <span th:text="${session.name}"></span>
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                  <span></span>Overview
+                  <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+
+
+                            <form class="tuple-form">
+                            <div class="form-group tuple-sentence" style="margin: 2% 15%">
+                            <div class="input-group">
+
+                            <div class="input-group-prepend">
+                            <button id="func-type" class="btn btn-fw btn-outline-primary dropdown-toggle type-func" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">关注类型</button>
+                            <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(107px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <div>
+                            <a class="dropdown-item obj-class" >股票</a>
+                            <a class="dropdown-item obj-class" >指数</a>
+
+                            <div role="separator" class="dropdown-divider"></div>
+                            <a class="dropdown-item obj-class" >概念</a>
+                            <a class="dropdown-item obj-class" >行业</a>
+                            </div>
+
+                            </div>
+                            </div>
+                            <div class="input-group-prepend">
+                            <input type="text" class="dropdown-toggle search-object" style="width: 300px"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"/>
+                            <div class="dropdown-menu" x-placement="top-start" style="position: absolute; transform: translate3d(107px, -141px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <div class="obj-list">
+                            <a class="dropdown-item" >请选择类型</a>
+
+                            <div role="separator" class="dropdown-divider"></div>
+                            </div>
+
+                            </div>
+                            </div>
+
+
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">已添加对象</h4>
+                    <div class="template-demo" id="choose-obj">
+                    </div>
+                </div>
+                        <button type="button" id="submit-obj" class="btn btn-outline-success btn-lg btn-block">根据以上选定对象生成快讯</button>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+
+
+                <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title" th:text="${session.name}"></h4>
+                            <p class="card-description">
+                                时间：<code th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd HH:mm:ss')}"></code>
+                            </p>
+                            <ul class="list-star">
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer th:replace="common/footer::footer">
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+    <script>
+              $(function () {
+
+
+
+                  $("body").on("click",".mdi-close",function () {
+                      $(this).parent().remove()
+                  })
+
+                  $("#submit-obj").click(function () {
+
+                      var objs = ""
+                      $("#choose-obj").children().each(function () {
+
+                          var attr = $(this).attr('name')+",";
+                          objs+=attr
+
+                      })
+                      $.ajax({
+                          url:"/web/template/buildNewsByObjsAndSemiTem",
+                          type:"post",
+                          data:{objs:objs.substr(0,objs.length-1)},
+                          success:function(data){
+                            var content = data.data;
+                            $(".list-star").empty();
+                            for (index in content){
+                                if(content[index].match(/^\s+$/)){
+                                    continue
+                                }
+
+                                $(".list-star").append('<li style="line-height: 30px">'+content[index]+'</li>')
+                            }
+
+                          },
+                          dataType:"json"
+                      });
+
+
+
+                  })
+
+
+
+                  $("body").on('keyup',".search-object",function () {
+
+                      var type = $(this).parent().prev().children().first().text();
+                      var list = $(this).next().children().first();
+                      if(type == '关注类型'){
+                          alert("请选择关注类型")
+                          $(this).val('')
+                          return
+                      }
+                      $.ajax({
+                          url:"/web/res/searchObj",
+                          type:"post",
+                          data:{search:$(this).val(),type:type},
+                          success:function(data){
+                              var algList = data.data;
+
+                              if(algList.length == 0){
+                                  list.empty()
+                              }else {
+                                  var size = algList.length;
+                                  if(algList.length > 10){
+                                      size = 10;
+                                  }
+
+                                  list.empty()
+                                  for (var i = 0 ; i< size; i++){
+
+                                      var name = algList[i].second;
+                                      var code = algList[i].first;
+                                      var liStr = '<a class="dropdown-item append-info" value="'+code+'" >'+name+'</a>'
+                                      list.append(liStr)
+                                  }
+                              }
+
+                          },
+                          dataType:"json"
+                      });
+
+
+                  })
+
+
+                  //下拉框值变换
+
+                  $("body").on("click", '.dropdown-item',function () {
+
+                      chooseVal = $(this).text();
+                      $(this).parent().parent().prev().text(chooseVal)
+                      var val = $(this).hasClass('obj-class')
+                      if(val){
+                          $(this).parent().parent().parent().next().children().first().val('')
+                          $(this).parent().parent().parent().next().find(".obj-list").first().empty()
+
+
+                      }
+                      var text = $(this).text();
+                      if(text == '概念'|| text == '行业'){
+                          $(this).parent().parent().parent().parent().find(".append-func").show()
+
+                      }else if(text == '股票' || text == '指数') {
+                          $(this).parent().parent().parent().parent().find(".append-func").hide()
+                          $(this).parent().parent().parent().next().next().children().first().text('关注函数')
+                      }
+
+                      var hasClassSearch = $(this).hasClass('append-info');
+                      if(hasClassSearch){
+                          //添加备选项
+                          $(this).parent().parent().prev().val('')
+                          var code = $(this).attr('value');
+                          $(this).parent().parent().prev().attr("name",code);
+                          var funcType = $('#func-type').text();
+                          if(funcType=='股票'){
+                              var appendInfo = '<button name="股票:'+code+'" type="button" class="btn btn-social-icon-text btn-facebook"><i class="mdi mdi-close"></i>'+chooseVal+'</button>'
+                              $("#choose-obj").append(appendInfo)
+                          }else if(funcType=='指数'){
+                              var appendInfo = '<button name="指数:'+code+'" type="button" class="btn btn-social-icon-text btn-dribbble"><i class="mdi mdi-close"></i>'+chooseVal+'</button>'
+                              $("#choose-obj").append(appendInfo)
+                          }else if(funcType=='概念'){
+                              var appendInfo = '<button name="概念:'+code+'" type="button" class="btn btn-social-icon-text btn-youtube"><i class="mdi mdi-close"></i>'+chooseVal+'</button>'
+                              $("#choose-obj").append(appendInfo)
+                          }else if(funcType=='行业'){
+                              var appendInfo = '<button name="行业:'+code+'" type="button" class="btn btn-social-icon-text btn-twitter"><i class="mdi mdi-close"></i>'+chooseVal+'</button>'
+                              $("#choose-obj").append(appendInfo)
+                          }
+                      }
+
+
+
+                  })
+
+
+
+
+
+
+
+              })
+    </script>
+</body>
+
+</html>

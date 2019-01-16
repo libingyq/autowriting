@@ -1,0 +1,45 @@
+spring:
+  profiles:
+    active: ${env:dev_v1.0}
+  application:
+    serviceId : ultra-nlg-fi-web
+    name: ultra-nlg-fi-web
+  cloud:
+    config:
+      discovery:
+            enabled: true
+            service-id: ultra-nlg-fi-config
+      fail-fast: true
+server:
+  port: 9102
+
+#请求处理的超时时间
+ribbon.ReadTimeout: 120000
+#请求连接的超时时间
+ribbon.ConnectTimeout: 120000
+
+feign.hystrix.enabled: true
+#hystrix 熔断机制
+hystrix:
+  shareSecurityContext: true
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 100000
+        forceClosed: true
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 600000
+
+
+
+
+
+eureka:
+  client:
+    service-url:
+            defaultZone: ${eureka.server:http://192.168.181.155:8000/eureka}
+  instance:
+    prefer-ip-address: true
+    hostname: ultra-nlg-fi-web

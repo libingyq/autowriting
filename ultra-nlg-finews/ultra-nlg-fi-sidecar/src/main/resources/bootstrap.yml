@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: ${env:dev_v1.0}
+  application:
+    serviceId : ultra-nlg-fi-sidecar
+    name: ultra-nlg-fi-sidecar
+  cloud:
+    config:
+      discovery:
+            enabled: true
+            service-id: ultra-nlg-fi-config
+      fail-fast: true
+server:
+  port: 7006
+
+ribbon:
+  ConnectionTimeout: 60000
+  ReadTimeout: 60000
+
+eureka:
+  client:
+    service-url:
+            defaultZone: ${eureka.server:http://192.168.181.155:8000/eureka}
+  instance:
+    ##使用sidecar的时候这个参数无效，应该是官方有bug
+    prefer-ip-address: true
+    ip-address: 192.168.181.159
+    hostname: fi-sidecar
+
+
+sidecar:
+  port: 3000
+  health-uri:http: //192.168.181.159:${sidecar.port}/health
+
+
+

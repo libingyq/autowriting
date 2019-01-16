@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Ultra-FIN</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- endinject -->
+  <!--<link rel="shortcut icon" href="images/favicon.png" />-->
+  <link rel="icon" type="image/x-icon" href="/static/images/favicon.png">
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+      <!--<iframe src="pages/common/header.html" width="100%"; height="94px" frameborder="0" scrolling="no" name="headFrame"></iframe>-->
+      <!--引入抽取的topbar-->
+      <!--模板名：会使用thymeleaf的前后缀配置规则进行解析-->
+      <div th:replace="common/header::topbar"></div>
+      <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_sidebar.html -->
+        <div th:replace="common/sidebar::sidebar"></div>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+          <div class="page-header">
+            <h3 class="page-title">
+              <span class="page-title-icon bg-gradient-primary text-white mr-2">
+                <i class="mdi mdi-home"></i>                 
+              </span>
+              Dashboard
+            </h3>
+            <nav aria-label="breadcrumb">
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">
+                  <span></span>Overview
+                  <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+
+            <div class="row">
+                <div class="col-12 grid-margin">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">数据抓取近况</h4>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            数据类型
+                                        </th>
+                                        <th>
+                                            来源
+                                        </th>
+                                        <th>
+                                            状态
+                                        </th>
+                                        <th>
+                                            最近一次抓取时间
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            概念板块
+                                        </td>
+                                        <td>
+                                            东方财富
+                                        </td>
+                                        <td>
+                                            <label class="badge" th:classappend="${#strings.equals(conceptStatus,'正常')} ? 'badge-gradient-success' : 'badge-gradient-warning'" th:text="${conceptStatus}"></label>
+                                            <!--<label class="badge badge-gradient-success" th:text="${conceptStatus}"></label>-->
+                                        </td>
+                                        <td th:text="${conceptLastGrabTime}">
+                                            Dec 5, 2017
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            行业板块
+                                        </td>
+                                        <td>
+                                            东方财富
+                                        </td>
+                                        <td>
+                                            <label class="badge" th:classappend="${#strings.equals(industryStatus,'正常')}?'badge-gradient-success':'badge-gradient-warning'" th:text="${industryStatus}">抓取失败</label>
+                                        </td>
+                                        <td th:text="${industryLastGrabTime}">
+                                            Dec 12, 2017
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            股票数据
+                                        </td>
+                                        <td>
+                                            腾讯
+                                        </td>
+                                        <td>
+                                            <label class="badge" th:classappend="${#strings.equals(stockStatus,'正常')}?'badge-gradient-success':'badge-gradient-warning'" th:text="${stockStatus}">正常</label>
+                                        </td>
+                                        <td th:text="${stockLastGrabTime}">
+                                            Dec 16, 2017
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            指数
+                                        </td>
+                                        <td>
+                                            新浪
+                                        </td>
+                                        <td>
+                                            <label class="badge" th:classappend="${#strings.equals(indexStatus,'正常')}?'badge-gradient-success':'badge-gradient-warning'" th:text="${indexStatus}">正常</label>
+                                        </td>
+                                        <td th:text="${indexLastGrabTime}">
+                                            Dec 3, 2017
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer th:replace="common/footer::footer">
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="vendors/js/vendor.bundle.addons.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="js/off-canvas.js"></script>
+  <script src="js/misc.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>

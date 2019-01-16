@@ -1,0 +1,15 @@
+spring.datasource.driverClassName: com.mysql.cj.jdbc.Driver
+spring.datasource.url: jdbc:mysql://192.168.181.93:13306/auto_writing?useUnicode=true&characterEncoding=utf8
+spring.datasource.username: root
+spring.datasource.password: root
+spring.datasource.initialize: false
+mybatis.configuration.mapUnderscoreToCamelCase: true
+
+spring.data.elasticsearch: 
+  cluster-name: es
+  cluster-nodes: ${es.nodes:192.168.181.93:9300}
+
+app: 
+  autowriting: 
+    custom: 
+      workerId: ${app.workerId:1}   # 工作节点id

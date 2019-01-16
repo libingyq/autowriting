@@ -1,0 +1,30 @@
+spring:
+  profiles:
+    active: ${env:dev_v1.0}
+  application:
+    serviceId : ultra-nlg-fi-resource
+    name: ultra-nlg-fi-resource
+  cloud:
+    config:
+      discovery:
+            enabled: true
+            service-id: ultra-nlg-fi-config
+      fail-fast: true
+server:
+  port: 7002
+
+ribbon:
+  ConnectionTimeout: 60000
+  ReadTimeout: 60000
+
+eureka:
+  client:
+    service-url:
+            defaultZone: ${eureka.server:http://192.168.181.155:8000/eureka}
+  instance:
+    prefer-ip-address: true
+    hostname: fi-resource
+
+producer:
+  kbs-path: F:\\hadoop\\hadoop2-20180816-01\\kb\\dinfoAuthentication.properties
+  file-path: /opt/
